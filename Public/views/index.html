@@ -15,15 +15,18 @@
       <h3>Favorite Movies</h3><p href="/favorites">Favorites Link</p>
       <input type="text" placeholder="movie title key word" ng-model="fm.searchIn" />
       <button ng-click="fm.getSearch()">Submit Search</button>
-      <div class="container row">
+      <ng-view>
+        <div class="container row">
         <div ng-repeat="thing in fm.movies" class="col-sm-3">
           <p>
-            {{ thing.title }}
-            {{ thing.year }}
+            {{ thing.Title }}
+            {{ thing.Year }}
             <img ng-src="{{thing.Poster}}">
+            <button ng-click="fm.saveFavorite(thing.imdbID,thing.Title,thing.Year,thing.Poster)">Favorite</button>
           </p>
         </div>
       </div>
+    </ng-view>
     </div>
   </body>
 </html>

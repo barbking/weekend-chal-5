@@ -5,10 +5,10 @@ My check list:
 Base Mode
 [x]set up folders
 [x]set up basic file structure plus two views, service file,
-[] html input and button for search
-[] send data to OMDB API, return response to DOM
-[] add favorite button to response
-[] send selected favorites to be stored in db
+[x] html input and button for search
+[x] send data to OMDB API, return response to DOM
+[x] add favorite button to response
+[x] send selected favorites to be stored in db
 [] display favorites on a separate view page
 
 Hard Mode

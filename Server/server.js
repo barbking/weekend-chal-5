@@ -9,8 +9,10 @@ var mongoose = require( 'mongoose' );
 mongoose.connect( 'localhost:27017/movies' );
 //schema
 var ourSchema = mongoose.Schema({
-  tile: String,
-  description: String
+  title: String,
+  year: Number,
+  poster: String,
+  imbDBid: String
 });
 //model
 var favorites = mongoose.model( 'favorites', ourSchema );
@@ -28,8 +30,17 @@ app.get( '/', function( req, res ){
 //   res.sendFile(path.join(__dirname, 'public/views/index.html'));
 // });
 // globals
-var port = process.env.PORT || 3456;
+var port = process.env.PORT || 3000;
 // spin up server
 app.listen( port, function() {
   console.log( 'server up on:', port );
 });
+
+//save favorite to db
+app.post('/favorites',function(req, res){
+  console.log('req.param to save:', req.body);
+  var newFav = favorites(req.body);
+  newFav.save().then(function(){
+  res.sendStatus( 200 );
+  });//end psot
+});//end app.delete
