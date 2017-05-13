@@ -3,8 +3,8 @@ For this challenge, you will be working with Angular and the OMDB API to build a
 
 My check list:
 Base Mode
-[]set up folders
-[]set up basic file structure plus two views, service file,
+[x]set up folders
+[x]set up basic file structure plus two views, service file,
 [] html input and button for search
 [] send data to OMDB API, return response to DOM
 [] add favorite button to response

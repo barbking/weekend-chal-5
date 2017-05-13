@@ -18,11 +18,15 @@ var favorites = mongoose.model( 'favorites', ourSchema );
 app.use(express.static('public'));
 app.use( bodyParser.urlencoded( { extended: true } ) );
 app.use( bodyParser.json() );
+//routes
+app.get( '/', function( req, res ){
+  res.sendFile( path.resolve( 'public/views/index.html' ) );
+});
 // This should be the last route
 // /* is wildcard will respond to all requests
-app.get('/*', function(req, res) {
-  res.sendFile(path.join(__dirname, 'public/views/index.html'));
-});
+// app.get('/*', function(req, res) {
+//   res.sendFile(path.join(__dirname, 'public/views/index.html'));
+// });
 // globals
 var port = process.env.PORT || 3456;
 // spin up server

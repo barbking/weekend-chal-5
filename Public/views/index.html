@@ -11,7 +11,19 @@
     <base href="/">
   </head>
   <body ng-app="myApp">
-
-    <p href="/favorites">Favorites</p>
+    <div ng-controller="FavoritesController as fm">
+      <h3>Favorite Movies</h3><p href="/favorites">Favorites Link</p>
+      <input type="text" placeholder="movie title key word" ng-model="fm.searchIn" />
+      <button ng-click="fm.getSearch()">Submit Search</button>
+      <div class="container row">
+        <div ng-repeat="thing in fm.movies" class="col-sm-3">
+          <p>
+            {{ thing.title }}
+            {{ thing.year }}
+            <img ng-src="{{thing.Poster}}">
+          </p>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

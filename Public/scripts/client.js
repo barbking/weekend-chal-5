@@ -1,31 +1,21 @@
-//requires
-//node modules
-var express = require('express');
-var app = express();
-var path = require('path');
-var bodyParser = require( 'body-parser' );
-var mongoose = require( 'mongoose' );
-// 27017 is default mongo port
-mongoose.connect( 'localhost:27017/movies' );
-//schema
-var ourSchema = mongoose.Schema({
-  tile: String,
-  description: String
-});
-//model
-var favorites = mongoose.model( 'favorites', ourSchema );
-//uses
-app.use(express.static('public'));
-app.use( bodyParser.urlencoded( { extended: true } ) );
-app.use( bodyParser.json() );
-// This should be the last route
-// /* is wildcard will respond to all requests
-app.get('/*', function(req, res) {
-  res.sendFile(path.join(__dirname, 'public/views/index.html'));
-});
-// globals
-var port = process.env.PORT || 3456;
-// spin up server
-app.listen( port, function() {
-  console.log( 'server up on:', port );
-});
+var myApp = angular.module( 'myApp', [] );
+// set up a controller (inject $http if using)
+myApp.controller( 'FavoritesController', function( $http ){
+  console.log( 'NG' );
+  // variable global to this controller
+  var vm = this;
+  // array attached to controller (makes it avilable to DOM)
+  vm.movies = [];
+  // "vm" stands for "view model"
+  vm.getSearch = function(){
+    console.log( 'in getSearch ng-click' );
+    console.log('http://www.omdbapi.com/?s='+vm.searchIn);
+    $http({
+      method: 'GET',
+      url: 'http://www.omdbapi.com/?s='+vm.searchIn //server file app.use points to this
+    }).then( function success( response ) {
+      console.log( 'resp:', response );
+      vm.movies = response.data.Search; //will always be .data with http
+    });
+  }; // end getSearch
+}); //end controller
