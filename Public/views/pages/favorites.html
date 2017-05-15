@@ -5,7 +5,7 @@
         {{ thing.title }}<br>
         {{ thing.year }}<br>
         <img ng-src="{{thing.poster}}">
-        <button ng-click="fc.deleteMovie()">Remove</button>
+        <button ng-click="fc.deleteMovie(thing._id)">Remove</button>
      </div>
   </div>
 </div>

@@ -47,6 +47,13 @@ app.get('/getfavorites',function(req,res){
   res.send(data);
   });
 });//end GET
+//delete a movie form db
+app.delete('/deletemovie/:id', function(req,res){
+  console.log('in delete');
+  favorites.remove({_id: req.params.id}).then(function(){
+  res.sendStatus(200);
+  });//end remove
+});//end DELETE
 //to get search/favorites routes
 app.get( '/*', function( req, res ){
   res.sendFile( path.resolve( 'public/views/index.html' ) );

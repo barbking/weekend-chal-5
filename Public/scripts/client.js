@@ -83,7 +83,12 @@ myApp.controller('FavoritesController',function($http){
     });//end GET
   };//end of getFavorites
 
-  vm.removeMovie = function(){
-    $http({});
-  }
+  vm.deleteMovie = function(id){
+    $http({
+      method: 'DELETE',
+      url: '/deletemovie/'+id
+    }).then(function success(response){
+      vm.getFavorites();
+    });//end DELETE
+  };//end removeMovie function
 });//end of Favorties Controller
