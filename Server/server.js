@@ -20,11 +20,10 @@ var favorites = mongoose.model( 'favorites', ourSchema );
 app.use(express.static('public'));
 app.use( bodyParser.json() );
 app.use( bodyParser.urlencoded( { extended: true } ) );
-
 //routes
-app.get( '/', function( req, res ){
-  res.sendFile( path.resolve( 'public/views/index.html' ) );
-});
+// app.get( '/', function( req, res ){
+//   res.sendFile( path.resolve( 'public/views/index.html' ) );
+// });
 // globals
 var port = process.env.PORT || 3000;
 // spin up server
@@ -43,7 +42,6 @@ app.post('/movietosave',function(req, res){
 app.get('/getfavorites',function(req,res){
   console.log('in get');
   favorites.find().then(function(data){
-    console.log('saved movies to send to dom'+ data);
   res.send(data);
   });
 });//end GET
@@ -55,6 +53,6 @@ app.delete('/deletemovie/:id', function(req,res){
   });//end remove
 });//end DELETE
 //to get search/favorites routes
-app.get( '/*', function( req, res ){
-  res.sendFile( path.resolve( 'public/views/index.html' ) );
+app.get('/*', function(req, res) {
+  res.sendFile(path.join(__dirname, '../public/views/index.html'));
 });
