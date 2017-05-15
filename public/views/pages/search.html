@@ -1,0 +1,12 @@
+<div ng-controller="SearchController as sc">
+  <input type="text" placeholder="movie title key word" ng-model="sc.searchIn" />
+  <button ng-click="sc.getSearch()">Submit Search</button>
+    <div class="container row">
+    <div ng-repeat="thing in sc.movies" class="col-md-3">
+        {{ thing.Title }}<br>
+        {{ thing.Year }}<br>
+        <img ng-src="{{thing.Poster}}" width="200px" height="300px">
+        <button ng-click="sc.saveFavorite(thing.imdbID,thing.Title,thing.Year,thing.Poster)">Favorite</button>
+    </div>
+  </div>
+</div>

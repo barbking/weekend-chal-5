@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Favorite Movies</title>
+    <title>Movie Search</title>
     <script src="vendors/angular.min.js" charset="utf-8"></script>
     <script src="vendors/angular-route.min.js" charset="utf-8"></script>
     <script src="scripts/client.js" charset="utf-8"></script>
@@ -11,22 +11,9 @@
     <base href="/">
   </head>
   <body ng-app="myApp">
-    <div ng-controller="FavoritesController as fm">
-      <h3>Favorite Movies</h3><p href="/favorites">Favorites Link</p>
-      <input type="text" placeholder="movie title key word" ng-model="fm.searchIn" />
-      <button ng-click="fm.getSearch()">Submit Search</button>
-      <ng-view>
-        <div class="container row">
-        <div ng-repeat="thing in fm.movies" class="col-sm-3">
-          <p>
-            {{ thing.Title }}
-            {{ thing.Year }}
-            <img ng-src="{{thing.Poster}}">
-            <button ng-click="fm.saveFavorite(thing.imdbID,thing.Title,thing.Year,thing.Poster)">Favorite</button>
-          </p>
-        </div>
-      </div>
-    </ng-view>
-    </div>
+    <h3 class="jumbotron">Movie Database</h3>
+    <h4><a href="/search">Search the OMDB for movies</a></h4>
+    <h4><a href="/favorites">View Favorites</a></h4>
+      <ng-view></ng-view>
   </body>
 </html>

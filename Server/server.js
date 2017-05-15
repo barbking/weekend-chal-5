@@ -24,23 +24,29 @@ app.use( bodyParser.json() );
 app.get( '/', function( req, res ){
   res.sendFile( path.resolve( 'public/views/index.html' ) );
 });
-// This should be the last route
-// /* is wildcard will respond to all requests
-// app.get('/*', function(req, res) {
-//   res.sendFile(path.join(__dirname, 'public/views/index.html'));
-// });
 // globals
 var port = process.env.PORT || 3000;
 // spin up server
 app.listen( port, function() {
   console.log( 'server up on:', port );
 });
-
 //save favorite to db
-app.post('/favorites',function(req, res){
+app.post('/movietosave',function(req, res){
   console.log('req.param to save:', req.body);
   var newFav = favorites(req.body);
   newFav.save().then(function(){
   res.sendStatus( 200 );
   });//end psot
 });//end app.delete
+//get saved movies
+app.get('/getfavorites',function(req,res){
+  console.log('in get');
+  favorites.find().then(function(data){
+    console.log('saved movies to send to dom'+ data);
+  res.send(data);
+  });
+});//end GET
+//to get search/favorites routes
+app.get( '/*', function( req, res ){
+  res.sendFile( path.resolve( 'public/views/index.html' ) );
+});
