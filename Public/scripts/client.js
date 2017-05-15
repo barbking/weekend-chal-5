@@ -7,6 +7,9 @@ $routeProvider
   .when('/', {
   template: '<h3>Welcome to movie search</h3>',
   controller: 'DefaultController as dc'})
+  .when('/home', {
+  templateUrl: 'views/pages/home.html',
+  controller: 'DefaultController as dc'})
   .when('/search', {
   templateUrl: 'views/pages/search.html',
   controller: 'SearchController as sc'})
@@ -79,4 +82,8 @@ myApp.controller('FavoritesController',function($http){
       console.log(vm.fav);
     });//end GET
   };//end of getFavorites
+
+  vm.removeMovie = function(){
+    $http({});
+  }
 });//end of Favorties Controller

@@ -12,8 +12,18 @@
   </head>
   <body ng-app="myApp">
     <h3 class="jumbotron">Movie Database</h3>
-    <h4><a href="/search">Search the OMDB for movies</a></h4>
-    <h4><a href="/favorites">View Favorites</a></h4>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">Movies</a>
+        </div>
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="/home">Home</a></li>
+          <li><a href="/search">Search the OMDB for movies</a></li>
+          <li><a href="/favorites">View Favorites</a></li>
+        </ul>
+      </div>
+    </nav>
       <ng-view></ng-view>
   </body>
 </html>
