@@ -1,3 +1,12 @@
 body {
   text-align: center;
+  background-color: #b4ccdb;
+}
+img {
+  width: 200px;
+  height: 300px;
+}
+.jumbotron {
+  background-color: #5e8eba;
+  font-size: 40px;
 }

@@ -1,11 +1,11 @@
 
 <div ng-controller="FavoritesController as fc" ng-init="fc.getFavorites()">
-    My Favorites Collection
-  </div>
     <div class="container row">
-     <div ng-repeat="thing in fc.favmovies" class="col-md-3">
+     <div ng-repeat="thing in fc.fav" class="col-md-3">
         {{ thing.title }}<br>
         {{ thing.year }}<br>
         <img ng-src="{{thing.poster}}">
+        <button ng-click="fc.deleteMovie()">Remove</button>
      </div>
   </div>
+</div>

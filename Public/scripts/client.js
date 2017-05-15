@@ -56,9 +56,7 @@ vm.saveFavorite = function(imdbID,Title,Year,Poster) {
     method: 'POST',
     url: '/movietosave',
     data: movieToSend
-  }).then( function success(response){
-    console.log(response);
-  });//end POST
+  });
  };//end saveFavortie
 }); //end search controller
 
@@ -66,17 +64,19 @@ vm.saveFavorite = function(imdbID,Title,Year,Poster) {
 myApp.controller('FavoritesController',function($http){
   console.log('in favorites controller');
   var vm = this;
-  vm.favmovies = [];
+  vm.fav = [];
   //get favorite movies from db
   vm.getFavorites = function(){
+    vm.fav = [];
     console.log('in favorites function');
     $http({
       method: 'GET',
       url: '/getfavorites'
     }).then( function success(response){
-      console.log('fav movie:'+ response.data);
-      console.log('favmovie array'+vm.favmovies);
-      vm.favmovies = response.data;
+      var data = response.data;
+      console.log(data);
+      vm.fav = data;
+      console.log(vm.fav);
     });//end GET
   };//end of getFavorites
 });//end of Favorties Controller
