@@ -2,9 +2,12 @@
 //node modules
 var express = require('express');
 var app = express();
-var path = require('path');
 var bodyParser = require( 'body-parser' );
 var mongoose = require( 'mongoose' );
+//our modules
+var index = require( './modules/index' );
+
+
 // 27017 is default mongo port
 mongoose.connect( 'localhost:27017/movies' );
 //schema
@@ -21,6 +24,8 @@ app.use(express.static('public'));
 app.use( bodyParser.json() );
 app.use( bodyParser.urlencoded( { extended: true } ) );
 //routes
+app.use( '/', index );
+
 // app.get( '/', function( req, res ){
 //   res.sendFile( path.resolve( 'public/views/index.html' ) );
 // });
@@ -30,6 +35,9 @@ var port = process.env.PORT || 3000;
 app.listen( port, function() {
   console.log( 'server up on:', port );
 });
+
+
+
 //save favorite to db
 app.post('/movietosave',function(req, res){
   console.log('req.param to save:', req.body);
@@ -52,7 +60,3 @@ app.delete('/deletemovie/:id', function(req,res){
   res.sendStatus(200);
   });//end remove
 });//end DELETE
-//to get search/favorites routes
-app.get('/*', function(req, res) {
-  res.sendFile(path.join(__dirname, '../public/views/index.html'));
-});
