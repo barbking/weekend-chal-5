@@ -5,12 +5,6 @@ var myApp = angular.module('myApp', ['ngRoute']);
 myApp.config(function($routeProvider, $locationProvider) {
 $routeProvider
   .when('/', {
-  template: '<h3>Welcome to movie search</h3>',
-  controller: 'DefaultController as dc'})
-  .when('/home', {
-  templateUrl: 'views/pages/home.html',
-  controller: 'DefaultController as dc'})
-  .when('/search', {
   templateUrl: 'views/pages/search.html',
   controller: 'SearchController as sc'})
   .when('/favorites', {
@@ -57,7 +51,7 @@ vm.saveFavorite = function(imdbID,Title,Year,Poster) {
   console.log(movieToSend);
   $http({
     method: 'POST',
-    url: '/movietosave',
+    url: '/moviedb',
     data: movieToSend
   });
  };//end saveFavortie
@@ -74,7 +68,7 @@ myApp.controller('FavoritesController',function($http){
     console.log('in favorites function');
     $http({
       method: 'GET',
-      url: '/getfavorites'
+      url: '/moviedb'
     }).then( function success(response){
       var data = response.data;
       console.log(data);
@@ -86,7 +80,7 @@ myApp.controller('FavoritesController',function($http){
   vm.deleteMovie = function(id){
     $http({
       method: 'DELETE',
-      url: '/deletemovie/'+id
+      url: '/moviedb/'+id
     }).then(function success(response){
       vm.getFavorites();
     });//end DELETE
