@@ -15,18 +15,13 @@ $routeProvider
 $locationProvider.html5Mode(true);
 });
 
-myApp.controller( 'DefaultController', function( $http ){
-  console.log( 'in default controller' );
-});
-
 // set up a controller (inject $http if using)
 myApp.controller( 'SearchController', function( $http ){
   console.log( 'in search controller' );
-  // variable global to this controller
+  // variable global to this controller, ,"vm" stands for "view model"
   var vm = this;
   // array attached to controller (makes it avilable to DOM)
   vm.movies = [];
-  // "vm" stands for "view model"
   vm.getSearch = function(){
     console.log( 'in getSearch' );
     console.log('http://www.omdbapi.com/?s='+vm.searchIn);
@@ -64,18 +59,16 @@ myApp.controller('FavoritesController',function($http){
   vm.fav = [];
   //get favorite movies from db
   vm.getFavorites = function(){
-    vm.fav = [];
     console.log('in favorites function');
     $http({
       method: 'GET',
       url: '/moviedb'
     }).then( function success(response){
-      var data = response.data;
-      console.log(data);
-      vm.fav = data;
+      console.log(response);
+      vm.fav = response.data;
       console.log(vm.fav);
     });//end GET
-  };//end of getFavorites
+  };//end of getFavorites 
 
   vm.deleteMovie = function(id){
     $http({

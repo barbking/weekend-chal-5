@@ -15,8 +15,11 @@ var ourSchema = mongoose.Schema({
 //model
 var favorites = mongoose.model( 'favorites', ourSchema );
 
+// globals
+var fav =[];
+
 //save favorite to db
-router.post('/movietosave',function(req, res){
+router.post('/',function(req, res){
   console.log('req.param to save:', req.body);
   var newFav = favorites(req.body);
   newFav.save().then(function(){
@@ -28,12 +31,13 @@ router.post('/movietosave',function(req, res){
 router.get('/',function(req,res){
   console.log('in get');
   favorites.find().then(function(data){
+    console.log(data);
   res.send(data);
   });
 });//end GET
 
 //delete a movie form db
-router.delete('/deletemovie/:id', function(req,res){
+router.delete('/:id', function(req,res){
   console.log('in delete');
   favorites.remove({_id: req.params.id}).then(function(){
   res.sendStatus(200);
